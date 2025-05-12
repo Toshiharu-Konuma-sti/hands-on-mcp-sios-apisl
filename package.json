@@ -1,0 +1,29 @@
+{
+  "name": "hands-on-mcp-sios-apisl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Toshiharu-Konuma-sti/hands-on-mcp-sios-apisl.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Toshiharu-Konuma-sti/hands-on-mcp-sios-apisl/issues"
+  },
+  "homepage": "https://github.com/Toshiharu-Konuma-sti/hands-on-mcp-sios-apisl#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.2",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "typescript": "^5.8.3"
+  }
+}
