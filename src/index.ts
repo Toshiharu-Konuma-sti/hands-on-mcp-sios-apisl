@@ -1,5 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+import express from "express";
 import { z } from "zod";
 import { get_officecode_from_prefecture, get_officecode_from_regionname, get_officecode_from_cityname, get_weather_forecast_from_officecode } from "./services/areaWeatherForecast.js";
 
@@ -48,13 +49,21 @@ server.tool(
   }
 );
 
-async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("MCP Server running on stdio");
-}
+const app = express();
+const port = 8787;
+let transport: SSEServerTransport | null = null;
 
-main().catch((error) => {
-  console.error("Fatal error in main():", error);
-  process.exit(1);
+app.get("/sse", async (_, res) => {
+  console.log("Received connection");
+  transport = new SSEServerTransport("/message", res);
+  await server.connect(transport);
+});
+
+app.post("/message", async (req, res) => {
+  console.log("Received message");
+  transport?.handlePostMessage(req, res);
+});
+
+app.listen(port, () => {
+  console.log("Remote MCP server listening on port", port);
 });

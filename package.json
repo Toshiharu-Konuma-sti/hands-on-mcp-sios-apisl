@@ -20,6 +20,8 @@
   "homepage": "https://github.com/Toshiharu-Konuma-sti/hands-on-mcp-sios-apisl#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.2",
+    "@types/express": "^5.0.2",
+    "express": "^5.1.0",
     "zod": "^3.24.4"
   },
   "devDependencies": {
